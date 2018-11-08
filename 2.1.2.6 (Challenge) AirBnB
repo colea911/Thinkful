@@ -1,0 +1,43 @@
+
+** What's the most expensive listing? What else can you tell me about the listing? **
+
+Most Expensive Listing is is 155,709 in the Mission neighborhood
+
+SELECT price
+from sfo_calender
+where price IS NOT NULL
+ORDER BY price desc
+Calendar Date – 2018-12-01
+Listing ID
+
+
+** What neighborhoods seem to be the most popular? **
+
+A count of neighborhoods shows SOMA is #1 with 237,250 listings.  SOMA also has the most expensive properties, the most expensive is in SOMA, at 155,000 dollars.  The next most expensive property outside of SOMA is 29427 in Potrero Hill.
+
+
+SELECT count(l.neighbourhood), l.neighbourhood
+from sfo_calender c
+JOIN 
+	sfo_listings l
+ON
+    l.id = c.listing_id 
+WHERE neighbourhood IS NOT Null
+GROUP BY l.neighbourhood
+ORDER BY count(neighbourhood) DESC
+
+
+SELECT max(c.price), (l.neighbourhood)
+from sfo_calender c
+JOIN 
+	sfo_listings l
+ON
+    l.id = c.listing_id 
+WHERE c.price IS NOT Null
+GROUP BY l.neighbourhood
+ORDER BY max(c.price) DESC
+
+
+** What time of year is the cheapest time to go to your city? What about the busiest? **
+
+Cant Answer this with limited information, as I had trouble importing all of the information. 
